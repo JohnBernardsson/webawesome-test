@@ -1,0 +1,17 @@
+{
+  "name": "webawesome-test",
+  "version": "1.0.0",
+  "description": "Web Awesome individual component import test",
+  "main": "index.js",
+  "scripts": {
+    "serve": "web-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@awesome.me/webawesome": "^3.0.0-beta.6",
+    "@web/dev-server": "^0.4.6",
+    "lit": "^3.3.1"
+  }
+}

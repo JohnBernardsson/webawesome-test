@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Awesome components import test</title>
+
+    <link rel="stylesheet" href="../node_modules/@awesome.me/webawesome/dist/styles/webawesome.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: var(--wa-space-2xl);
+            background-color: white;
+        }
+
+        section.component-section, section.component-subsection {
+            padding-bottom: var(--wa-space-m);
+        }
+
+    </style>
+</head>
+<body>
+    <script type="module" src="../node_modules/@awesome.me/webawesome/dist/components/button/button.js"></script>
+    <script type="module" src="../node_modules/@awesome.me/webawesome/dist/components/input/input.js"></script>
+    <script type="module" src="../node_modules/@awesome.me/webawesome/dist/components/radio/radio.js"></script>
+    <script type="module" src="../node_modules/@awesome.me/webawesome/dist/components/radio-group/radio-group.js"></script>
+    <script>
+        // Function to load HTML sections dynamically
+        async function loadSection(sectionName, containerId) {
+            try {
+                const response = await fetch(`./sections/${sectionName}.html`);
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${sectionName}: ${response.status}`);
+                }
+                const html = await response.text();
+                document.getElementById(containerId).innerHTML = html;
+            } catch (error) {
+                console.error(`Error loading section ${sectionName}:`, error);
+                document.getElementById(containerId).innerHTML = `<p>Error loading ${sectionName} section</p>`;
+            }
+        }
+
+        // Load all sections when DOM is ready
+        document.addEventListener('DOMContentLoaded', async () => {
+            await Promise.all([
+                loadSection('buttons', 'buttons-section'),
+                loadSection('inputs', 'inputs-section')
+            ]);
+        });
+    </script>
+
+    <h1>Web Awesome Components Demo</h1>
+
+    <section class="component-section" id="buttons-section"></section>
+    <section class="component-section" id="inputs-section"></section>
+      
+</body>
+</html>
